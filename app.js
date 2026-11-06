@@ -7,8 +7,8 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const GOOGLE_FORM_ACTION_URL =
-    "https://docs.google.com/forms/d/e/1FAIpQLSeoBu6sTwyjVALC4REiKCF47Qzq0CkYn_fTh1EjjFE935LsVw/formResponse";
+  const GOOGLE_SPREADSHEET_WEBHOOK_URL =
+    "https://script.google.com/macros/s/AKfycbymezDjkaFatu0aVc6aUZZURQPj0pPC15YgNOaXr4wRSjYCxWLoTcHSzoyXGqDRohnEkw/exec";
 
   let currentMode = "work";
   let currentTheme = "orange";
@@ -746,90 +746,50 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-  // Googleフォーム（裏側のスプレッドシート）へ見込み顧客データ＆回答を自動送信
+  // Googleスプレッドシート（GAS Webhook）へ見込み顧客データ＆回答を自動送信
   function submitLeadToGoogleForm() {
-    const formData = new URLSearchParams();
     const rDev = getRadioValue("device-right");
     const lDev = getRadioValue("device-left");
-
-    formData.append("entry.1688410264", inputName.value.trim() || "匿名");
-    formData.append("entry.1277224412", inputAge.value);
-    formData.append("entry.1451234713", inputEmail.value.trim());
-
     const types = getCheckedValues("hearing-type-group");
-    types.forEach((t) => {
-      if (t.includes("LiD")) {
-        formData.append("entry.1813755445", "聴覚情報処理障害（LDP）");
-      } else if (["感音性難聴", "伝音性難聴", "混合性難聴"].includes(t)) {
-        formData.append("entry.1813755445", t);
-      }
-    });
-
-    formData.append(
-      "entry.1478839647",
-      `${levelUnaided.value}（右:${dbRight.value || "-"}dB / 左:${dbLeft.value || "-"}dB）`
-    );
-    formData.append(
-      "entry.1489437653",
-      levelAided.value + (levelNote.value ? `（補足: ${levelNote.value}）` : "")
-    );
-
-    const mapDeviceForGForm = (val) => (val === "人工内耳" ? "人口内耳" : val);
-    const rVal = mapDeviceForGForm(rDev);
-    const lVal = mapDeviceForGForm(lDev);
-    if (["人口内耳", "補聴器", "使っていない"].includes(rVal)) {
-      formData.append("entry.465200676", rVal);
-    }
-    if (["人口内耳", "補聴器", "使っていない"].includes(lVal)) {
-      formData.append("entry.8351812", lVal);
-    }
-
-    formData.append(
-      "entry.751168429",
-      assistSystem.value.startsWith("使っている") ? "使っている" : "使っていない"
-    );
+    const diffScenes = getCheckedValues("difficult-scenes-group");
+    const commMethods = getCheckedValues("comm-methods-group");
 
     const fullRecordSummary = [
       `【選択モード】${currentMode} / 【テーマ色】${currentTheme} / 【所属】${inputRole.value}`,
       `【右耳】${rDev} (${dbRight.value || "-"}dB) / 【左耳】${lDev} (${dbLeft.value || "-"}dB)`,
       `【難聴の種類】${types.join("、")}`,
       `【ベストポジション】${currentPosition}`,
-      `【得意な手段】${getCheckedValues("comm-methods-group").join("、")}`,
-      `【苦手な場面】${getCheckedValues("difficult-scenes-group").join("、")}`,
+      `【得意な手段】${commMethods.join("、")}`,
+      `【苦手な場面】${diffScenes.join("、")}`,
       `【お願い事項】\n${editRequestsText.value}`,
     ].join("\n");
-    formData.append("entry.382595332", fullRecordSummary);
+
+    const payload = {
+      name: inputName.value.trim() || "匿名",
+      age: inputAge.value,
+      email: inputEmail.value.trim(),
+      hearingTypes: types.join("、"),
+      unaided: `${levelUnaided.value}（右:${dbRight.value || "-"}dB / 左:${dbLeft.value || "-"}dB）`,
+      aided: levelAided.value + (levelNote.value ? `（補足: ${levelNote.value}）` : ""),
+      deviceRight: rDev,
+      deviceLeft: lDev,
+      assistSystem: assistSystem.value.startsWith("使っている") ? "使っている" : "使っていない",
+      difficultScenes: diffScenes.join("、"),
+      commMethods: commMethods.join("、"),
+      requests: fullRecordSummary,
+    };
 
     try {
-      // 画面遷移を起こさず確実にCORS制限を回避して送信するhidden iframe方式
-      let iframe = document.getElementById("gform_hidden_iframe");
-      if (!iframe) {
-        iframe = document.createElement("iframe");
-        iframe.id = "gform_hidden_iframe";
-        iframe.name = "gform_hidden_iframe";
-        iframe.style.display = "none";
-        document.body.appendChild(iframe);
-      }
-
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = GOOGLE_FORM_ACTION_URL;
-      form.target = "gform_hidden_iframe";
-      form.style.display = "none";
-
-      for (const [key, value] of formData.entries()) {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      }
-
-      document.body.appendChild(form);
-      form.submit();
-      setTimeout(() => form.remove(), 1000);
+      fetch(GOOGLE_SPREADSHEET_WEBHOOK_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(payload),
+      });
     } catch (e) {
-      console.error("Form submit error:", e);
+      console.error("Webhook submit error:", e);
     }
   }
 
