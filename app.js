@@ -801,15 +801,36 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("entry.382595332", fullRecordSummary);
 
     try {
-      fetch(GOOGLE_FORM_ACTION_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: formData.toString(),
-      });
-    } catch (e) {}
+      // 画面遷移を起こさず確実にCORS制限を回避して送信するhidden iframe方式
+      let iframe = document.getElementById("gform_hidden_iframe");
+      if (!iframe) {
+        iframe = document.createElement("iframe");
+        iframe.id = "gform_hidden_iframe";
+        iframe.name = "gform_hidden_iframe";
+        iframe.style.display = "none";
+        document.body.appendChild(iframe);
+      }
+
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = GOOGLE_FORM_ACTION_URL;
+      form.target = "gform_hidden_iframe";
+      form.style.display = "none";
+
+      for (const [key, value] of formData.entries()) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+      setTimeout(() => form.remove(), 1000);
+    } catch (e) {
+      console.error("Form submit error:", e);
+    }
   }
 
   // PDFダウンロード実行処理
