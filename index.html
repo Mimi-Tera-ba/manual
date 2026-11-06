@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>「私の聞こえのトリセツ」制作ツール | 聞こえの特徴と配慮のお願いシート無料作成 | ミミノバ</title>
+  <meta name="description" content="質問に答えるだけで、職場の上司・同僚、学校の先生、周囲の人に「自分の聞こえの特徴」と「お願いしたい配慮」を分かりやすく伝えるA4両面『私の聞こえのトリセツ（取扱説明書）』PDFを無料作成！補聴器・人工内耳・聴力dB・ベストポジション図解・音声認識アプリ案内に対応。">
+  <link rel="canonical" href="https://miminoba.jp/manual/">
+
+  <!-- OGP設定（SNSシェア用） -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="「私の聞こえのトリセツ」制作ツール | ミミノバ（miminoba.jp）">
+  <meta property="og:description" content="質問に答えるだけで、周囲に自分の聞こえと配慮のお願いを優しく伝える『私の聞こえのトリセツ（A4両面PDF）』が無料で完成！">
+  <meta property="og:url" content="https://miminoba.jp/manual/">
+  <meta property="og:image" content="https://miminoba.jp/manual/ogp.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="「私の聞こえのトリセツ」制作ツール | ミミノバ">
+  <meta name="twitter:description" content="質問に答えるだけで、周囲に自分の聞こえと配慮のお願いを優しく伝える『私の聞こえのトリセツ（A4両面PDF）』が無料で完成！">
+  <meta name="twitter:image" content="https://miminoba.jp/manual/ogp.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173517351502617" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- 画面ヘッダー（印刷時は非表示） -->
+  <header class="app-header no-print">
+    <div class="header-inner">
+      <div class="brand-wrap">
+        <a href="https://miminoba.jp/" class="brand-home-link" title="ミミノバ TOPへ戻る">← ミミノバ HOME</a>
+        <span class="brand-badge">🦻 公式ツール</span>
+        <h1 class="app-title">「私の聞こえのトリセツ」制作ツール</h1>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="top-preview-btn" class="btn-preview">👀 プレビューを確認する（表・裏）</button>
+        <button type="button" id="top-download-btn" class="btn-primary">📥 PDFをダウンロード（無料）</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- メイン1カラム入力コンテナ（印刷時は非表示） -->
+  <main class="form-main-container no-print" id="editor-view">
+
+    <div class="intro-card">
+      <h2>📋 質問に答えるだけで、デザイン性の高い「聞こえの取扱説明書（A4両面）」が完成！</h2>
+      <p>
+        職場の上司・同僚、学校の先生、日常の窓口など、周囲の人に「自分の聞こえの特徴」と「お願いしたい配慮」を分かりやすく伝えるA4両面（2ページ）シートを自動生成します。<br>
+        <strong>ゆったり入力したあと、「👀 プレビューを確認する」ボタンから完成イメージをいつでも確認できます。</strong>
+      </p>
+    </div>
+
+    <!-- STEP 1: 用途モード＆デザインカラー -->
+    <section class="form-card">
+      <div class="step-header">
+        <span class="step-num">STEP 1</span>
+        <h3>用途モード・フレームデザイン・カラーを選ぶ</h3>
+      </div>
+
+      <label class="field-label">🎯 渡す相手・シチュエーション（AIが作る文章のトーンが自動で切り替わります）</label>
+      <div class="mode-selector" id="mode-selector">
+        <button type="button" class="mode-btn active" data-mode="work">
+          <span class="mode-icon">🏢</span>
+          <span class="mode-name">職場・ビジネス用</span>
+          <span class="mode-sub">上司・同僚・人事・就活</span>
+        </button>
+        <button type="button" class="mode-btn" data-mode="school">
+          <span class="mode-icon">🏫</span>
+          <span class="mode-name">学校・キャンパス用</span>
+          <span class="mode-sub">先生・講師・クラスメイト</span>
+        </button>
+        <button type="button" class="mode-btn" data-mode="daily">
+          <span class="mode-icon">☕</span>
+          <span class="mode-name">日常・自己紹介用</span>
+          <span class="mode-sub">友人・習い事・窓口・病院</span>
+        </button>
+      </div>
+
+      <label class="field-label" style="margin-top:20px;">🖼️ フレーム＆イラストデザイン（枠のあしらいやシート各所のイラストが切り替わります）</label>
+      <div class="frame-selector" id="frame-selector">
+        <button type="button" class="frame-btn active" data-frame="simple">
+          <span class="frame-icon">🌿</span>
+          <span class="frame-name">シンプル・ナチュラル</span>
+          <span class="frame-sub">双葉＆やさしい線画イラスト</span>
+        </button>
+        <button type="button" class="frame-btn" data-frame="cute">
+          <span class="frame-icon">🌸</span>
+          <span class="frame-name">かわいい・ふんわり</span>
+          <span class="frame-sub">お花・小鳥・キラキラ装飾</span>
+        </button>
+        <button type="button" class="frame-btn" data-frame="stylish">
+          <span class="frame-icon">✨</span>
+          <span class="frame-name">スタイリッシュ・モダン</span>
+          <span class="frame-sub">シャープ枠＆幾何学アイコン</span>
+        </button>
+        <button type="button" class="frame-btn" data-frame="cafe">
+          <span class="frame-icon">📒</span>
+          <span class="frame-name">カフェ・ノート風</span>
+          <span class="frame-sub">マステ留め＆手帳イラスト</span>
+        </button>
+      </div>
+
+      <label class="field-label" style="margin-top:20px;">🎨 シートのテーマカラー</label>
+      <div class="color-selector" id="color-selector">
+        <button type="button" class="color-btn active" data-theme="orange" style="--swatch:#ea5504;">ミミノバオレンジ</button>
+        <button type="button" class="color-btn" data-theme="navy" style="--swatch:#1e3a8a;">ビジネスネイビー</button>
+        <button type="button" class="color-btn" data-theme="green" style="--swatch:#15803d;">リーフグリーン</button>
+        <button type="button" class="color-btn" data-theme="rose" style="--swatch:#be185d;">サクラローズ</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: 基本プロフィール＆難聴の種類 -->
+    <section class="form-card">
+      <div class="step-header">
+        <span class="step-num">STEP 2</span>
+        <h3>基本情報 ＆ 難聴の種類</h3>
+      </div>
+
+      <div class="form-grid-3">
+        <div>
+          <label for="input-name" class="field-label">お名前（ニックネーム可） <span class="req-badge">必須</span></label>
+          <input type="text" id="input-name" class="text-input" placeholder="例：山田 太郎 / たろう" value="山田 太郎">
+        </div>
+        <div>
+          <label for="input-age" class="field-label">年代 <span class="req-badge">必須</span></label>
+          <select id="input-age" class="select-input">
+            <option value="10代以下">10代以下</option>
+            <option value="20代">20代</option>
+            <option value="30代" selected>30代</option>
+            <option value="40代">40代</option>
+            <option value="50代">50代</option>
+            <option value="60代">60代</option>
+            <option value="70代以上">70代以上</option>
+          </select>
+        </div>
+        <div>
+          <label for="input-role" class="field-label">所属・肩書き（任意）</label>
+          <input type="text" id="input-role" class="text-input" placeholder="例：〇〇部 / 〇〇大学 2年" value="企画営業部 サポートチーム">
+        </div>
+      </div>
+
+      <!-- 顔写真・イラストアイコンのアップロード欄 -->
+      <div class="avatar-upload-box" style="margin-top:16px;">
+        <div class="avatar-upload-left">
+          <label for="input-avatar" class="field-label" style="margin-bottom:4px;">📷 顔写真・イラストアイコン（任意・シート右上の氏名の横に表示されます）</label>
+          <p class="avatar-upload-hint">ご自身の写真や似顔絵イラストを入れると、周囲の方に顔を覚えてもらいやすくなります。</p>
+          <div class="avatar-upload-controls">
+            <input type="file" id="input-avatar" accept="image/*" class="file-input">
+            <button type="button" id="clear-avatar-btn" class="btn-clear-avatar" style="display:none;">🗑️ 画像を外す</button>
+          </div>
+        </div>
+        <div id="avatar-form-preview-wrap" class="avatar-form-preview-wrap" style="display:none;">
+          <img id="avatar-form-preview" src="" alt="アップロード画像プレビュー" class="avatar-form-preview-img">
+        </div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <label class="field-label">難聴の種類（複数選択可）</label>
+        <div class="checkbox-grid" id="hearing-type-group">
+          <label class="check-pill"><input type="checkbox" value="感音性難聴" checked> 感音性難聴</label>
+          <label class="check-pill"><input type="checkbox" value="伝音性難聴"> 伝音性難聴</label>
+          <label class="check-pill"><input type="checkbox" value="混合性難聴"> 混合性難聴</label>
+          <label class="check-pill"><input type="checkbox" value="片耳難聴（一側性難聴）"> 片耳難聴（一側性難聴）</label>
+          <label class="check-pill"><input type="checkbox" value="LiD / APD（聞き取り困難症・聴覚情報処理障害）"> LiD / APD（聞き取り困難症）</label>
+          <label class="check-pill"><input type="checkbox" value="原因調査中・その他"> 原因調査中・その他</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: 左右の補聴機器（補聴器・人工内耳等）＆ 聴力（dB）＆ 聞こえの目安 -->
+    <section class="form-card">
+      <div class="step-header">
+        <span class="step-num">STEP 3</span>
+        <h3>左右の補聴機器（補聴器・人工内耳など）＆ 聴力（dB）</h3>
+      </div>
+
+      <div class="ears-input-grid">
+        <!-- 右耳ボックス -->
+        <div class="ear-input-box">
+          <div class="ear-box-header">👂 右耳（Right）の補聴機器と聴力</div>
+          <label class="field-label">使用している補聴機器（右耳）</label>
+          <div class="radio-pill-grid" id="device-right-group">
+            <label class="radio-pill"><input type="radio" name="device-right" value="補聴器" checked> 🦻 補聴器</label>
+            <label class="radio-pill"><input type="radio" name="device-right" value="人工内耳"> ⚡ 人工内耳</label>
+            <label class="radio-pill"><input type="radio" name="device-right" value="骨伝導・軟骨伝導機器"> 🎧 骨伝導・軟骨伝導</label>
+            <label class="radio-pill"><input type="radio" name="device-right" value="使っていない"> ✖ 使っていない</label>
+          </div>
+          <div class="db-input-row">
+            <label for="db-right" class="field-label" style="margin-bottom:0;">右耳の平均聴力（任意）：</label>
+            <div class="db-field-wrap">
+              <input type="number" id="db-right" class="db-input" placeholder="例: 75" min="0" max="140" value="70">
+              <span class="db-unit">dB（デシベル）</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 左耳ボックス -->
+        <div class="ear-input-box">
+          <div class="ear-box-header">👂 左耳（Left）の補聴機器と聴力</div>
+          <label class="field-label">使用している補聴機器（左耳）</label>
+          <div class="radio-pill-grid" id="device-left-group">
+            <label class="radio-pill"><input type="radio" name="device-left" value="補聴器" checked> 🦻 補聴器</label>
+            <label class="radio-pill"><input type="radio" name="device-left" value="人工内耳"> ⚡ 人工内耳</label>
+            <label class="radio-pill"><input type="radio" name="device-left" value="骨伝導・軟骨伝導機器"> 🎧 骨伝導・軟骨伝導</label>
+            <label class="radio-pill"><input type="radio" name="device-left" value="使っていない"> ✖ 使っていない</label>
+          </div>
+          <div class="db-input-row">
+            <label for="db-left" class="field-label" style="margin-bottom:0;">左耳の平均聴力（任意）：</label>
+            <div class="db-field-wrap">
+              <input type="number" id="db-left" class="db-input" placeholder="例: 80" min="0" max="140" value="75">
+              <span class="db-unit">dB（デシベル）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <label for="assist-system" class="field-label">🎙️ 補聴援助システム（ロジャー・デジタルワイヤレスマイク等）の使用</label>
+        <select id="assist-system" class="select-input">
+          <option value="使っていない" selected>使っていない</option>
+          <option value="使っている（会議や授業でワイヤレスマイクをお願いすることがあります）">使っている（会議や授業でワイヤレスマイクをお願いすることがあります）</option>
+        </select>
+      </div>
+
+      <div class="form-grid-2" style="margin-top:16px;">
+        <div>
+          <label for="level-aided" class="field-label">🦻 補聴機器を【装着しているとき】の聞こえ</label>
+          <select id="level-aided" class="select-input">
+            <option value="静かな場所で1対1なら会話できるが、騒がしい場所や複数人は難しい" selected>静かな場所で1対1なら会話できるが、騒がしい場所や複数人は難しい</option>
+            <option value="口元や表情、文字（筆談・字幕）と組み合わせることで理解できる">口元や表情、文字（筆談・字幕）と組み合わせることで理解できる</option>
+            <option value="近くの普通の声なら大体聞き取れる（早口やマスク越しは苦手）">近くの普通の声なら大体聞き取れる（早口やマスク越しは苦手）</option>
+            <option value="環境音はわかるが、言葉の聞き取りには常に文字や手話が必要">環境音はわかるが、言葉の聞き取りには常に文字や手話が必要</option>
+            <option value="補聴機器は装用していない">補聴機器は装用していない</option>
+          </select>
+        </div>
+        <div>
+          <label for="level-unaided" class="field-label">🔇 補聴機器を【外しているとき】の聞こえ</label>
+          <select id="level-unaided" class="select-input">
+            <option value="ほとんど音が聞こえない（大きな音や振動のみわかる）">ほとんど音が聞こえない（大きな音や振動のみわかる）</option>
+            <option value="耳元で大きな声なら少しわかる程度" selected>耳元で大きな声なら少しわかる程度</option>
+            <option value="静かな場所で1対1ならある程度聞き取れる">静かな場所で1対1ならある程度聞き取れる</option>
+            <option value="日常の音は聞こえるが、言葉の細部が聞き取りにくい">日常の音は聞こえるが、言葉の細部が聞き取りにくい</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <label for="level-note" class="field-label">補足メモ（左右の聞こえ差や音の特徴など、任意）</label>
+        <input type="text" id="level-note" class="text-input" placeholder="例：右耳の方が比較的聞き取りやすいです / 高い電子音や低い男性の声が聞き取りにくいです">
+      </div>
+    </section>
+
+    <!-- STEP 4: ベストポジション（図解連動）＆コミュニケーション手段 -->
+    <section class="form-card">
+      <div class="step-header">
+        <span class="step-num">STEP 4</span>
+        <h3>話しかけるベストポジション（図解）＆ コミュニケーション手段</h3>
+      </div>
+
+      <label class="field-label">🪑 話しかけてもらうときの「ベストな立ち位置・座席」（表面の図解イラストに連動します）</label>
+      <div class="position-selector" id="position-selector">
+        <button type="button" class="pos-btn active" data-pos="front">😊 正面（顔・口元が見える位置）</button>
+        <button type="button" class="pos-btn" data-pos="right">👉 私の【右側】から</button>
+        <button type="button" class="pos-btn" data-pos="left">👈 私の【左側】から</button>
+        <button type="button" class="pos-btn" data-pos="visual">👋 視界に入って合図してから</button>
+      </div>
+
+      <div style="margin-top:18px;">
+        <label class="field-label">💬 伝わりやすいコミュニケーション手段（複数選択可）</label>
+        <div class="checkbox-grid" id="comm-methods-group">
+          <label class="check-pill"><input type="checkbox" value="チャット・メール（文字連絡）" checked> 💬 チャット・メール</label>
+          <label class="check-pill"><input type="checkbox" value="音声認識アプリ（YYシステム・UDトーク等）" checked> 📱 音声認識アプリ（YYシステム・UDトーク等）</label>
+          <label class="check-pill"><input type="checkbox" value="筆談・スマホメモ" checked> ✍️ 筆談・スマホメモ</label>
+          <label class="check-pill"><input type="checkbox" value="Web会議のリアルタイム字幕" checked> 🖥️ Web会議の字幕機能</label>
+          <label class="check-pill"><input type="checkbox" value="読話（口元の動きを見る）" checked> 👄 読話（口元を見る）</label>
+          <label class="check-pill"><input type="checkbox" value="静かな場所での音声会話"> 🗣️ 静かな場所での音声</label>
+          <label class="check-pill"><input type="checkbox" value="手話"> 🤟 手話</label>
+          <label class="check-pill"><input type="checkbox" value="指差し・身振り・ジェスチャー"> 👉 指差し・身振り</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 5: 苦手な場面 ＆ 配慮してほしいこと ＆ 裏面のアプリ案内設定 -->
+    <section class="form-card">
+      <div class="step-header">
+        <span class="step-num">STEP 5</span>
+        <h3>苦手な場面 ＆ 周囲へのお願い・音声認識アプリ案内（裏面）</h3>
+      </div>
+
+      <label class="field-label">⚠️ 聞こえにくい・困りやすい場面（表面に掲載・複数選択可）</label>
+      <div class="checkbox-list" id="difficult-scenes-group">
+        <label class="check-row"><input type="checkbox" value="騒がしい場所（カフェ・居酒屋・雑音のあるオフィス等）での会話" checked> 騒がしい場所（雑音やBGMがある環境）での会話</label>
+        <label class="check-row"><input type="checkbox" value="話している人の顔（表情や口元）が見えない場面・マスク越しの会話" checked> 話している人の顔（口元）が見えない場面・マスク越しの会話</label>
+        <label class="check-row"><input type="checkbox" value="グループ（4〜5人以上）で複数人が同時に話す会議や雑談" checked> グループ（4〜5人以上）で複数人が同時に話す場面</label>
+        <label class="check-row"><input type="checkbox" value="後ろや遠くから急に声をかけられる場面" checked> 後ろや遠くから急に声をかけられる場面</label>
+        <label class="check-row"><input type="checkbox" value="電話での音声やり取り・アナウンス放送の聞き取り" checked> 電話での音声やり取り・館内放送の聞き取り</label>
+        <label class="check-row"><input type="checkbox" value="ひそひそ話（小声）や早口での会話"> ひそひそ話（小声）や早口での会話</label>
+        <label class="check-row"><input type="checkbox" value="音声での会話はどんな環境でも聞き取りにくい（常に視覚情報が必要）"> 音声での会話はどんな環境でも聞き取りにくい（常に視覚情報が必要）</label>
+        <label class="check-row"><input type="checkbox" value="左右で聞こえやすさに差がある（片側からの声が聞き取りにくい）"> 左右で聞こえやすさに差がある</label>
+      </div>
+
+      <label class="field-label" style="margin-top:20px;">✨ こうしてもらえると助かります！（裏面のメインお願いリスト）</label>
+      <div class="checkbox-list" id="support-actions-group">
+        <label class="check-row"><input type="checkbox" value="話しかける前に、視界に入るか軽く肩をトントンして合図していただけると助かります。" checked> 話しかける前に、視界に入るか肩トントンで合図してほしい</label>
+        <label class="check-row"><input type="checkbox" value="お顔（口元）が見える向きで、普段より少しゆっくり・はっきり話していただけると聞き取りやすいです。" checked> 口元が見える向きで、ゆっくり・はっきり話してほしい</label>
+        <label class="check-row"><input type="checkbox" value="大事な連絡や業務指示、日時・固有名詞などは、チャットやメール（文字）でも残していただけると確実です。" checked> 大事な連絡・指示・日時はチャットやメモ（文字）で残してほしい</label>
+        <label class="check-row"><input type="checkbox" value="会議や打ち合わせでは、資料の画面共有や事前配布、または音声認識アプリ（YY文字起こし・UDトーク等）の併用をお願いします。" checked> 会議では資料共有や音声認識アプリ（YY文字起こし・UDトーク等）の併用をお願いしたい</label>
+        <label class="check-row"><input type="checkbox" value="電話の聞き取りが難しいため、メール・チャットでの連絡や、電話取り次ぎのサポートをいただけると大変助かります。" checked> 電話対応が難しいため、文字連絡や周囲のフォローをお願いしたい</label>
+        <label class="check-row"><input type="checkbox" value="複数人で話す際は、いま誰が話しているか分かるように手を挙げるなど合図をしていただけると話を追いやすいです。" checked> 複数人で話す際は、発言者が誰か分かるよう合図してほしい</label>
+      </div>
+
+      <label class="field-label" style="margin-top:20px;">💡 誤解を防ぐために知っておいてほしいこと（裏面コラムに掲載）</label>
+      <div class="checkbox-list" id="knowledge-tips-group">
+        <label class="check-row"><input type="checkbox" value="補聴器や人工内耳は「つければメガネのようにすぐ100%元通りに聞こえる」ものではなく、雑音の中では言葉の判別が難しくなります。" checked> 「補聴器・人工内耳＝すぐ100%元通りに聞こえるわけではない」ことを伝えたい</label>
+        <label class="check-row"><input type="checkbox" value="後ろから呼ばれて返事がない時は、無視しているのではなく「音の存在自体に気づけていない」だけなので、近くで合図をお願いします。" checked> 「返事がない時は無視ではなく、音に気づいていないだけ」と伝えたい</label>
+        <label class="check-row"><input type="checkbox" value="何度も聞き返してしまうことがありますが、怒っているわけではなく「あなたの言葉を正確に理解したい」という気持ちからです。" checked> 「聞き返すのは怒っているからではなく、正確に理解したいから」と伝えたい</label>
+        <label class="check-row"><input type="checkbox" value="音や言葉を聞き取るために常に脳をフル回転させて集中しているため、長時間の会議後などに強い疲労（聴覚疲労）を感じることがあります。"> 「聞き取りに集中するため疲れやすい（聴覚疲労）」ことも知っておいてほしい</label>
+      </div>
+
+      <label class="field-label" style="margin-top:20px;">🚨 緊急時・災害時の安全サポート（裏面に掲載）</label>
+      <label class="check-row highlight-emergency">
+        <input type="checkbox" id="emergency-check" checked>
+        非常ベルや館内アナウンス（音声放送）に気づけない場合があるため、緊急時は身振りやスマホ画面（文字）で知らせてほしい
+      </label>
+
+      <label class="field-label" style="margin-top:20px;">📱 活用をおすすめしたい音声認識アプリ（アプリダウンロード用のQRコードが表示されます）</label>
+      <div class="checkbox-grid" id="recommended-apps-group">
+        <label class="check-pill"><input type="checkbox" value="yy" checked> 📱 YY文字起こし</label>
+        <label class="check-pill"><input type="checkbox" value="udtalk" checked> 📱 UDトーク</label>
+        <label class="check-pill"><input type="checkbox" value="voice_memo" checked> 🎙️ スマホ標準の音声入力・文字起こし</label>
+      </div>
+    </section>
+
+    <!-- STEP 6: AI生成テキストの確認＆自由カスタマイズ -->
+    <section class="form-card">
+      <div class="step-header">
+        <span class="step-num">STEP 6</span>
+        <h3>AI自動生成テキストの確認 ＆ 自由カスタマイズ</h3>
+      </div>
+      <p class="step-desc">
+        STEP 1〜5の選択内容から、AIが表面・裏面の各文章を自動で組み立てています。<br>
+        <strong>自分の言葉に書き換えたい箇所があれば、ここで自由に編集できます！</strong>
+      </p>
+
+      <div style="margin-bottom:14px;">
+        <button type="button" id="ai-regenerate-btn" class="btn-ai-full">
+          🪄 現在の選択内容からAI文章を再構成する
+        </button>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="custom-edit-group">
+          <label for="edit-sheet-title" class="field-label">① シートのメインタイトル（表面）</label>
+          <input type="text" id="edit-sheet-title" class="text-input">
+        </div>
+        <div class="custom-edit-group">
+          <label for="edit-closing" class="field-label">⑥ 結びのひとことメッセージ（裏面末尾）</label>
+          <input type="text" id="edit-closing" class="text-input">
+        </div>
+      </div>
+
+      <div class="custom-edit-group">
+        <label for="edit-greeting" class="field-label">② はじめのご挨拶・自己紹介文（表面）</label>
+        <textarea id="edit-greeting" class="textarea-input" rows="2"></textarea>
+      </div>
+
+      <div class="custom-edit-group">
+        <label for="edit-hearing-summary" class="field-label">③ 私の聞こえの特徴まとめ（表面）</label>
+        <textarea id="edit-hearing-summary" class="textarea-input" rows="2"></textarea>
+      </div>
+
+      <div class="custom-edit-group">
+        <label for="edit-requests-text" class="field-label">④ お願いしたい配慮リスト（裏面・1行につき1項目）</label>
+        <textarea id="edit-requests-text" class="textarea-input" rows="5"></textarea>
+      </div>
+
+      <div class="custom-edit-group">
+        <label for="edit-app-promo" class="field-label">⑤ 裏面下部：YYシステム・UDトーク等の翻訳/音声認識アプリ案内文</label>
+        <textarea id="edit-app-promo" class="textarea-input" rows="3"></textarea>
+      </div>
+
+      <div class="preview-cta-bar">
+        <button type="button" id="mid-preview-btn" class="btn-preview-large">
+          👀 完成した「聞こえのトリセツ（表面・裏面）」をプレビューで確認する
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 7: 利用登録＆PDFダウンロード（リード獲得セクション） -->
+    <section class="form-card download-gate-card" id="download-section">
+      <div class="step-header">
+        <span class="step-num">STEP 7</span>
+        <h3>完成した「聞こえのトリセツ（A4両面PDF）」をダウンロード</h3>
+      </div>
+      <p class="step-desc">
+        ご入力いただいたメールアドレス宛に、今後ミミノバ（miminoba.jp）から「聞こえと暮らしのお役立ちガイド・補助金や便利な新機能のご案内」をお届けいたします。
+      </p>
+
+      <div class="lead-form-box">
+        <label for="input-email" class="field-label">📩 連絡先メールアドレス <span class="req-badge">必須</span></label>
+        <input type="email" id="input-email" class="text-input" placeholder="example@email.com" required>
+        <p id="email-error" class="error-msg" style="display:none;">⚠️ 正しいメールアドレスを入力してください。</p>
+
+        <label class="check-row consent-row" style="margin-top:12px;">
+          <input type="checkbox" id="consent-check" checked>
+          <span><a href="https://miminoba.jp/privacy-policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意し、ミミノバからのお役立ち情報・ご案内を受け取ることに同意します。</span>
+        </label>
+        <p id="consent-error" class="error-msg" style="display:none;">⚠️ ダウンロードにはご案内受け取り・プライバシーポリシーへの同意が必要です。</p>
+
+        <div class="download-btn-row">
+          <button type="button" id="bottom-preview-btn" class="btn-preview-sub">
+            👀 まずはプレビューを見る
+          </button>
+          <button type="button" id="main-download-btn" class="btn-download-giant">
+            📥 登録してPDFをダウンロードする
+          </button>
+        </div>
+        <p class="print-tip">
+          💡 ボタンを押すと印刷・PDF保存画面が開きます。<strong>「送信先：PDFに保存」</strong>を選ぶと、表面（1ページ目）・裏面（2ページ目）の2枚セットPDFとして保存されます。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 画面フッター・法的表記（印刷時は非表示） -->
+  <footer class="app-footer no-print">
+    <div class="footer-legal-box">
+      <h4>🛡️ ご利用上の注意・免責事項・個人情報の取り扱いについて</h4>
+      <ul>
+        <li><strong>医療・診断に関する免責：</strong>本ツールで作成されるシートは、職場・学校・日常生活における円滑なコミュニケーションを補助する目的で提供されており、医師による医学的診断や公的証明書を代替するものではありません。</li>
+        <li><strong>顔写真・イラスト画像の安全性：</strong>STEP 2で選択されたプロフィール画像はお使いのブラウザ内でのみPDF生成に使用され、外部サーバーへ送信・保存されることは一切ありません。</li>
+        <li><strong>ご登録情報の管理：</strong>PDFダウンロード時にご入力いただいた情報（お名前・年代・メールアドレス・聞こえのアンケート項目）は、<a href="https://miminoba.jp/privacy-policy/" target="_blank" rel="noopener noreferrer">ミミノバ プライバシーポリシー</a>に基づき厳重に管理し、お役立ち情報の配信およびサービス向上のためにのみ利用いたします。</li>
+      </ul>
+    </div>
+
+    <nav class="footer-nav">
+      <a href="https://miminoba.jp/">ミミノバHOME</a>
+      <a href="https://miminoba.jp/subsidy/">全国 補聴器助成金検索ナビ</a>
+      <a href="https://miminoba.jp/map/">全国 障害者割引マップ</a>
+      <a href="https://miminoba.jp/sign-map/">全国 サインストアマップ</a>
+      <a href="https://miminoba.jp/work">仕事サポート</a>
+      <a href="https://miminoba.jp/privacy-policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+      <a href="https://miminoba.jp/contact/" target="_blank" rel="noopener noreferrer">お問い合わせ・運営者情報</a>
+    </nav>
+    <p class="copyright">Copyright (C) ミミノバ miminoba (miminoba.jp) All Rights Reserved.</p>
+  </footer>
+
+  <!-- ==========================================================
+       プレビューモーダル＆印刷出力エリア（表面・裏面のA4 2ページ構成）
+       ※通常時はモーダルとしてボタンを押した時だけ表示、印刷時はここだけが出力される
+       ========================================================== -->
+  <div id="preview-modal" class="preview-modal">
+    <div class="preview-modal-header no-print">
+      <div class="preview-modal-title">
+        <span>👀 「私の聞こえのトリセツ」完成プレビュー（A4 表面・裏面 2ページ構成）</span>
+      </div>
+      <div class="preview-modal-actions">
+        <button type="button" id="close-preview-btn" class="btn-back-edit">✏️ 入力画面に戻って修正する</button>
+        <button type="button" id="modal-download-btn" class="btn-primary">📥 この内容でPDFをダウンロード</button>
+      </div>
+    </div>
+
+    <div class="sheets-scroll-container" id="sheets-wrapper">
+
+      <!-- ==========================================
+           【1ページ目：表面】基本プロフィール＆聞こえの状態
+           ========================================== -->
+      <div class="page-label no-print">📄 【表面（1ページ目）】基本プロフィール・左右の聴力・ベストポジション・苦手な場面</div>
+      <article id="sheet-page-1" class="a4-sheet theme-orange frame-simple">
+        <!-- 四隅のフレーム装飾イラスト（絶対配置のためレイアウトを1mmも崩さない） -->
+        <div class="corner-deco tl" data-corner="tl"></div>
+        <div class="corner-deco tr" data-corner="tr"></div>
+        <div class="corner-deco bl" data-corner="bl"></div>
+        <div class="corner-deco br" data-corner="br"></div>
+
+        <!-- シート上部ヘッダー帯 -->
+        <header class="sheet-header">
+          <div class="sheet-header-left">
+            <div class="title-with-illust">
+              <h1 id="sheet-title-display" class="sheet-main-title">私の聞こえのトリセツ</h1>
+              <span class="title-deco-illust" data-slot="title"></span>
+            </div>
+          </div>
+          <div class="sheet-profile-badge">
+            <img id="sheet-avatar-img" src="" alt="プロフィールアイコン" class="sheet-avatar-img" style="display:none;">
+            <div class="sheet-profile-text">
+              <span id="sheet-role-display" class="sheet-role">企画営業部 サポートチーム</span>
+              <div class="sheet-name-row">
+                <span class="sheet-name-label">氏名：</span>
+                <span id="sheet-name-display" class="sheet-name">山田 太郎</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- はじめのご挨拶ボックス（やさしい吹き出しスタイル） -->
+        <div class="sheet-greeting-box">
+          <div class="greeting-icon-bubble" id="greeting-icon-bubble">😊</div>
+          <p id="sheet-greeting-display"></p>
+        </div>
+
+        <!-- 私の「聞こえ」と補聴機器（全幅・帯切れゼロのテーブルカード構造） -->
+        <div class="sheet-box">
+          <div class="box-tape-deco"></div>
+          <div class="box-illust-slot" data-slot="hearing"></div>
+          <h2 class="sheet-box-title">🦻 私の「聞こえ」の状態と使用している補聴機器</h2>
+
+          <!-- 右耳・左耳ステータス＆dB表示 -->
+          <div class="ears-status-grid">
+            <div class="ear-card">
+              <div class="ear-card-top">
+                <span class="ear-label">👂 右耳（Right）</span>
+                <span id="sheet-db-right" class="ear-db-badge">平均 70 dB</span>
+              </div>
+              <div id="sheet-ear-right" class="ear-value">🦻 補聴器</div>
+            </div>
+            <div class="ear-card">
+              <div class="ear-card-top">
+                <span class="ear-label">👂 左耳（Left）</span>
+                <span id="sheet-db-left" class="ear-db-badge">平均 75 dB</span>
+              </div>
+              <div id="sheet-ear-left" class="ear-value">🦻 補聴器</div>
+            </div>
+          </div>
+
+          <!-- 帯切れしないグリッドテーブル（ラベル帯が上下100%伸縮） -->
+          <div class="hearing-spec-table">
+            <div class="spec-row">
+              <div class="spec-label">難聴のタイプ</div>
+              <div id="sheet-type-display" class="spec-content">感音性難聴</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">装用時の聞こえ</div>
+              <div id="sheet-aided-display" class="spec-content"></div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">外したとき</div>
+              <div id="sheet-unaided-display" class="spec-content"></div>
+            </div>
+            <div class="spec-row" id="sheet-assist-row">
+              <div class="spec-label">補聴援助機器</div>
+              <div id="sheet-assist-display" class="spec-content"></div>
+            </div>
+          </div>
+
+          <p id="sheet-summary-display" class="sheet-summary-note"></p>
+        </div>
+
+        <!-- 中段2カラム：ベストポジション図解 ＆ 伝わりやすい手段 -->
+        <div class="sheet-mid-grid">
+          <div class="sheet-box">
+            <div class="box-tape-deco"></div>
+            <div class="box-illust-slot" data-slot="position"></div>
+            <h2 class="sheet-box-title">🪑 話しかけるときのベストポジション</h2>
+            <div class="position-diagram-box">
+              <div id="position-svg-wrap" class="position-svg-wrap"></div>
+              <div class="position-caption">
+                <strong id="sheet-pos-title"></strong>
+                <p id="sheet-pos-desc"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sheet-box">
+            <div class="box-tape-deco"></div>
+            <div class="box-illust-slot" data-slot="comm"></div>
+            <h2 class="sheet-box-title">💬 伝わりやすいコミュニケーション手段</h2>
+            <p class="sub-box-label">以下の方法だと、スムーズ・確実にやり取りができます：</p>
+            <div id="sheet-comm-badges" class="sheet-comm-badges"></div>
+          </div>
+        </div>
+
+        <!-- 苦手な場面（聞こえにくい環境） -->
+        <div class="sheet-box sheet-difficult-box">
+          <div class="box-tape-deco"></div>
+          <div class="box-illust-slot" data-slot="difficult"></div>
+          <h2 class="sheet-box-title">⚠️ 少し聞き取りにくい・困りやすい場面</h2>
+          <div id="sheet-difficult-list" class="difficult-tags-wrap"></div>
+        </div>
+
+        <!-- 表面フッター -->
+        <footer class="sheet-footer">
+          <div class="page-turn-notice">
+            <span>👉 裏面（2ページ目）に<strong>「具体的なお願い」</strong>と<strong>「便利な音声認識アプリ（YY文字起こし・UDトーク等）のご案内」</strong>があります</span>
+          </div>
+        </footer>
+
+      </article>
+
+      <!-- ==========================================
+           【2ページ目：裏面】配慮のお願い・誤解解消・YY文字起こし/UDトーク案内
+           ========================================== -->
+      <div class="page-label no-print" style="margin-top:28px;">📄 【裏面（2ページ目）】具体的な配慮のお願い・知っておいてほしいこと・音声認識アプリ（YY文字起こし／UDトーク等）案内</div>
+      <article id="sheet-page-2" class="a4-sheet theme-orange frame-simple page-break-before">
+        <!-- 四隅のフレーム装飾イラスト -->
+        <div class="corner-deco tl" data-corner="tl"></div>
+        <div class="corner-deco tr" data-corner="tr"></div>
+        <div class="corner-deco bl" data-corner="bl"></div>
+        <div class="corner-deco br" data-corner="br"></div>
+
+        <!-- 裏面ミニヘッダー -->
+        <header class="sheet-sub-header">
+          <span class="sub-header-title">🤝 コミュニケーションを円滑にするためのサポートのお願い</span>
+        </header>
+
+        <!-- 周囲へのお願いアクション（メイン強調ボックス） -->
+        <div class="sheet-box sheet-requests-box">
+          <div class="box-tape-deco"></div>
+          <div class="box-illust-slot" data-slot="requests"></div>
+          <h2 class="sheet-box-title">✨ こうしていただけると大変助かります！（お願いしたい配慮）</h2>
+          <ul id="sheet-requests-list" class="requests-checklist"></ul>
+        </div>
+
+        <!-- 誤解を防ぐための豆知識コラム -->
+        <div class="sheet-box" id="sheet-knowledge-box">
+          <div class="box-tape-deco"></div>
+          <div class="box-illust-slot" data-slot="knowledge"></div>
+          <h2 class="sheet-box-title">💡 知っておいていただきたい「聞こえと補聴機器」のこと</h2>
+          <ul id="sheet-knowledge-list" class="knowledge-list"></ul>
+        </div>
+
+        <!-- 緊急時・災害時の配慮 -->
+        <div id="sheet-emergency-box" class="sheet-emergency-bar">
+          <div class="emergency-title">🚨 緊急時・災害時・安全面でのサポートのお願い</div>
+          <p>非常ベルや館内アナウンス（音声放送）に気づけない場合があるため、緊急時や避難時は<strong>身振りやスマートフォンの画面・メモ（文字）</strong>で知らせていただけると大変助かります。</p>
+        </div>
+
+        <!-- 裏面下部特設：YYシステム・UDトーク等の音声認識アプリのご案内 -->
+        <div class="sheet-box app-promo-box">
+          <div class="box-tape-deco"></div>
+          <div class="box-illust-slot" data-slot="apps"></div>
+          <h2 class="sheet-box-title">📱 会話がもっとスムーズになる「音声認識・翻訳アプリ」のご案内</h2>
+          <p id="sheet-app-promo-text" class="app-promo-lead"></p>
+
+          <div id="sheet-apps-grid" class="apps-showcase-grid">
+            <!-- app.js で選択されたアプリ（YYシステム / UDトーク / 標準音声入力）のカードを描画 -->
+          </div>
+        </div>
+
+        <!-- 結びのひとこと＆ミミノバフッター -->
+        <footer class="sheet-footer">
+          <div class="sheet-closing-msg">
+            <span class="closing-icon">🌸</span>
+            <p id="sheet-closing-display"></p>
+          </div>
+          <div class="sheet-brand-credit">
+            <span><strong>ミミノバ</strong>　聞こえない、聞こえにくい人のためのライフスタイルメディア（miminoba.jp）</span>
+          </div>
+        </footer>
+
+      </article>
+
+    </div>
+  </div>
+
+  <!-- トースト通知 -->
+  <div id="toast-msg" class="toast-msg no-print">✨ 更新しました！</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
