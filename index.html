@@ -23,16 +23,22 @@
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=2">
 
+  <!-- ミミノバ本体公式 共通ヘッダー＆フッター -->
+  <link rel="stylesheet" href="miminoba-nav.css">
+  <script src="miminoba-nav.js" defer></script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173517351502617" crossorigin="anonymous"></script>
 </head>
 <body>
 
+  <!-- ミミノバ公式 共通ヘッダー挿入枠 -->
+  <div id="miminoba-header"></div>
+
   <!-- 画面ヘッダー（印刷時は非表示） -->
   <header class="app-header no-print">
     <div class="header-inner">
       <div class="brand-wrap">
-        <a href="https://miminoba.jp/" class="brand-home-link" title="ミミノバ TOPへ戻る">← ミミノバ HOME</a>
         <span class="brand-badge">🦻 公式ツール</span>
         <h1 class="app-title">「私の聞こえのトリセツ」制作ツール</h1>
       </div>
@@ -453,19 +459,10 @@
         <li><strong>ご登録情報の管理：</strong>PDFダウンロード時にご入力いただいた情報（お名前・年代・メールアドレス・聞こえのアンケート項目）は、<a href="https://miminoba.jp/privacy-policy/" target="_blank" rel="noopener noreferrer">ミミノバ プライバシーポリシー</a>に基づき厳重に管理し、お役立ち情報の配信およびサービス向上のためにのみ利用いたします。</li>
       </ul>
     </div>
-
-    <nav class="footer-nav">
-      <a href="https://miminoba.jp/">ミミノバHOME</a>
-      <a href="https://miminoba.jp/subsidy/">全国 補聴器助成金検索ナビ</a>
-      <a href="https://miminoba.jp/map/">全国 障害者割引マップ</a>
-      <a href="https://miminoba.jp/sign-map/">全国 サインストアマップ</a>
-      <a href="https://miminoba.jp/work">仕事サポート</a>
-      <a href="https://miminoba.jp/kids">子ども・家族サポート</a>
-      <a href="https://miminoba.jp/privacy-policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
-      <a href="https://miminoba.jp/contact/" target="_blank" rel="noopener noreferrer">お問い合わせ・運営者情報</a>
-    </nav>
-    <p class="copyright">Copyright (C) ミミノバ miminoba (miminoba.jp) All Rights Reserved.</p>
   </footer>
+
+  <!-- ミミノバ公式 共通フッター挿入枠 -->
+  <div id="miminoba-footer"></div>
 
   <!-- ==========================================================
        プレビューモーダル＆印刷出力エリア（表面・裏面のA4 2ページ構成）
