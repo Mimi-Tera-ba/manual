@@ -91,7 +91,7 @@
     `).join('');
 
     const webToolLinksHTML = WEB_TOOLS.map(item => `
-      <a href="${item.url}">
+      <a href="${item.url}" class="mmnb-tool-btn">
         ${item.label}
       </a>
     `).join('');
@@ -110,31 +110,37 @@
             </a>
           </div>
 
-          <!-- SNSリンク：公式note ＆ 公式X（白枠なし・本体等倍完全再現） -->
-          <div class="mmnb-footer-social-box">
-            <a href="https://note.com/miminoba_33" target="_blank" rel="noopener noreferrer" class="mmnb-footer-note-link" title="ミミノバ 公式note">
-              <img src="https://miminoba.jp/wp-content/uploads/2023/09/logo-4-1024x386.png" 
-                   alt="note" 
-                   width="170" height="auto"
-                   loading="lazy"
-                   decoding="async">
-            </a>
-            <a href="https://x.com/Miminoba33" target="_blank" rel="noopener noreferrer" class="mmnb-footer-x-link" title="ミミノバ 公式X">
-              <img src="https://miminoba.jp/wp-content/uploads/2023/09/logo-black-1002x1024.png" 
-                   alt="X (旧Twitter)" 
-                   width="47" height="auto"
-                   loading="lazy"
-                   decoding="async">
-            </a>
-          </div>
-
-          <!-- ツール回遊リンク枠 -->
-          <div class="mmnb-tools-nav-box">
-            <div class="mmnb-tools-nav-title">
-              ✦ ミミノバ Webツール ＆ お役立ちポータル
+          <!-- 中段：SNS（左） ＆ 3×2 ツールボタン（右）の横並び配置 -->
+          <div class="mmnb-footer-middle-wrap">
+            <!-- 左側：公式SNS（note ＆ X） -->
+            <div class="mmnb-footer-sns-col">
+              <a href="https://note.com/miminoba_33" target="_blank" rel="noopener noreferrer" class="mmnb-footer-note-link" title="ミミノバ 公式note">
+                <img src="https://miminoba.jp/wp-content/uploads/2023/09/logo-4-1024x386.png" 
+                     alt="note" 
+                     width="145" height="auto"
+                     loading="lazy"
+                     decoding="async">
+              </a>
+              <a href="https://x.com/Miminoba33" target="_blank" rel="noopener noreferrer" class="mmnb-footer-x-link" title="ミミノバ 公式X">
+                <img src="https://miminoba.jp/wp-content/uploads/2023/09/logo-black-1002x1024.png" 
+                     alt="X (旧Twitter)" 
+                     width="42" height="auto"
+                     loading="lazy"
+                     decoding="async">
+              </a>
             </div>
-            <div class="mmnb-tools-nav-links">
-              ${webToolLinksHTML}
+
+            <!-- 仕切り線（PC時） -->
+            <div class="mmnb-footer-divider"></div>
+
+            <!-- 右側：3×2 ツールボタングリッド -->
+            <div class="mmnb-footer-tools-col">
+              <div class="mmnb-footer-tools-title">
+                ✦ ミミノバ Webツール ＆ ポータル
+              </div>
+              <div class="mmnb-footer-tools-grid">
+                ${webToolLinksHTML}
+              </div>
             </div>
           </div>
 
